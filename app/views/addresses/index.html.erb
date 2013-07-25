@@ -1,0 +1,26 @@
+<h1>Addresses</h1>
+
+
+<% @addresses.each do |address| %>
+	<fieldset name=>
+		<legend>
+			<%=address[:address]%>
+		</legend>
+		<h4>List of residents:</h4>
+		<ul>
+			<%address.people.map do |person|%>
+				<li>
+					<%=person.firstname%>
+					<%=person.lastname%>
+					<%=person.birthyear%>
+					<br>
+					<span>Status:</span>
+					<% person.housings.map do |housing|%>
+						<%=housing.status%>
+					<%end%>
+				</li>
+			<%end%>
+		</ul>
+	</fieldset>
+	<br>
+<% end %>
