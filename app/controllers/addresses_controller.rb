@@ -7,11 +7,9 @@ class AddressesController < ApplicationController
 	
 	def new
 		@address = Address.new
-		3.times {@address.people.build}
 	end
 	
 	def create
-	
 		@address = Address.create address_params
 		if @address.valid?
 			redirect_to addresses_path
@@ -25,7 +23,6 @@ class AddressesController < ApplicationController
 	end
 	
 	def update
-		
 		@address = Address.find params[:id]
 		if @address.update_attributes(address_params)
 			redirect_to addresses_path
@@ -36,7 +33,7 @@ class AddressesController < ApplicationController
 	
 	def destroy
 		@address= Address.find params[:id]
-		@address.delete
+		@address.destroy
 		redirect_to addresses_path
 	end
 	
@@ -45,7 +42,7 @@ class AddressesController < ApplicationController
 	
 	private
 	def address_params
-		params.require(:address).permit(:address, :zipcode, people_attributes: [ :id, :firstname, :lastname, :birthyear ], housings_attribures: [ :id, :status, :address_id, :person_id ])
+		params.require(:address).permit!
 	end
 	
 	

@@ -1,0 +1,16 @@
+<fieldset>
+  <%= f.label :status %>
+  <%= f.text_field :status %>
+  
+  <% f.object.build_person unless f.object.person.present? %>
+
+  <%= f.fields_for :person do |p| %>
+    <p> <%= p.label :firstname %> <%= p.text_field :firstname %> </p>
+    <p> <%= p.label :lastname %> <%= p.text_field :lastname %> </p>
+    <p> <%= p.label :birthyear %> <%= p.text_field :birthyear %> </p>
+  <% end %>
+  <p>
+    <%= f.hidden_field :_destroy %>
+    <%= link_to 'Remove', '#', class: 'remove-fields', remote: true %>
+  </p>
+</fieldset>

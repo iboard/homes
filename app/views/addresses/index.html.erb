@@ -2,7 +2,7 @@
 
 
 <% @addresses.each do |address| %>
-	<fieldset name=>
+	<fieldset>
 		<legend>
 			<%=address[:address]%>
 		</legend>
@@ -15,13 +15,12 @@
 					<%=person.birthyear%>
 					<br>
 					<span>Status:</span>
-					<% person.housings.map do |housing|%>
-						<%=housing.status%>
-					<%end%>
+          <%= person.housing.status %>
 				</li>
 			<%end%>
 		</ul>
 		<%=link_to "Edit", edit_address_path(address)%>
+    <%=link_to "Delete", address_path(address), method: :delete, data: { confirm: 'Are you sure?' } %>
 	</fieldset>
 	<br>
 <% end %>

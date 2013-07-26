@@ -3,29 +3,10 @@
 	<%= f.text_area :address %><br>
 	<%= f.label :zipcode %>
 	<%= f.text_field :zipcode %><br>
-	<% f.fields_for :people do |builder|%>
-		<%= builder.label :firstname, "Firstname" %><br/>
-		<%= builder.text_field :firstname %><br/>
-		<%= builder.label :lastname, "Lastname" %><br/>
-		<%= builder.text_field :lastname %><br/>
-		<%= builder.label :birthyear, "Birthyear" %><br/>
-		<%= builder.text_field :birthyear %><br/>
-		
+	<%= f.fields_for :housings do |builder|%>
+    <%= render 'housing_fields', f: builder %>
 	<%end%>
-	<% f.fields_for :housings do |t| %>
-		
-		<%= t.label :status %>
-		<%= t.text_field :status %>
-		
-	<%end%>
-	<br>
-	<% Person.all.each do |person| %>
-    <div class="checkboxform">
-        <%= check_box_tag "address[person_ids][]", person.id, @address.people.include?(person) %>
-        <label><%= person.firstname %></label>
-    </div>
-	<% end %>
-
+  <%= link_to_add_fields('Add Person', f, :housings) %>
 	<br>
 	<%= f.submit "Save" %>
 	<% unless @address.valid? %>

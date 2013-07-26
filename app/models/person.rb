@@ -1,6 +1,6 @@
 class Person < ActiveRecord::Base
 
-	has_many :housings
-	has_many :people, :through => :housings
+	has_one :housing
+	has_one :address, :through => :housing
 		
 end

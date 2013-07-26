@@ -1,7 +1,7 @@
 Homes::Application.routes.draw do
  
-   resources :people
+   root to: 'addresses#index'
+
    resources :addresses
-   resources :housings
  
 end
