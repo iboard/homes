@@ -19,6 +19,13 @@
 		
 	<%end%>
 	<br>
+	<% Person.all.each do |person| %>
+    <div class="checkboxform">
+        <%= check_box_tag "address[person_ids][]", person.id, @address.people.include?(person) %>
+        <label><%= person.firstname %></label>
+    </div>
+	<% end %>
+
 	<br>
 	<%= f.submit "Save" %>
 	<% unless @address.valid? %>
