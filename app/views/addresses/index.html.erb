@@ -4,7 +4,8 @@
 <% @addresses.each do |address| %>
 	<fieldset>
 		<legend>
-			<%=address[:address]%>
+			<%=address.zipcode -%>, 
+			<%=address.address %>
 		</legend>
 		<h4>List of residents:</h4>
 		<ul>
